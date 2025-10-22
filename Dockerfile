@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Instalar dependencias
-RUN npm ci
+RUN npm install --frozen-lockfile
 
 # Etapa 2: Build
 FROM node:20-alpine AS builder
