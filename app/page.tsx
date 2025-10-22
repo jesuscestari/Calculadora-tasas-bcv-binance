@@ -198,7 +198,16 @@ export default function Home() {
         <div className="mt-8 text-center">
           {lastUpdated && (
             <p className="text-sm text-gray-500">
-              Última actualización: {new Date(lastUpdated).toLocaleString('es-VE')}
+              Última actualización: {new Date(lastUpdated).toLocaleString('es-VE', {
+                timeZone: 'America/Caracas',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+              })} <span className="font-semibold">(Hora de Venezuela)</span>
             </p>
           )}
         </div>
