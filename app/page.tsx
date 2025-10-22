@@ -68,12 +68,6 @@ export default function Home() {
   };
 
   const shareResults = () => {
-    const numAmount = parseFloat(amount);
-    if (isNaN(numAmount) || numAmount <= 0) {
-      alert('Por favor ingresa un monto válido');
-      return;
-    }
-
     const bcvResult = calculateConversion(tasaBCV);
     const binanceResult = calculateConversion(tasaBinance);
 
@@ -173,23 +167,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Botón de compartir */}
-        <div className="mb-6 flex justify-center">
-          <button
-            onClick={shareResults}
-            className="flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 active:scale-95"
-            style={{
-              backgroundColor: 'var(--card-bg)',
-              border: '2px solid var(--border)',
-            }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-            </svg>
-            <span>{showCopied ? '¡Copiado! ✓' : 'Compartir Resultado'}</span>
-          </button>
-        </div>
-
         {/* Tarjetas de conversión */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Tarjeta BCV */}
@@ -273,6 +250,25 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Botón de compartir - Solo aparece cuando hay un monto */}
+        {amount && parseFloat(amount) > 0 && (
+          <div className="mt-6 flex justify-center animate-fade-in">
+            <button
+              onClick={shareResults}
+              className="flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 active:scale-95"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                border: '2px solid var(--border)',
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+              <span>{showCopied ? '¡Copiado! ✓' : 'Compartir Resultado'}</span>
+            </button>
+          </div>
+        )}
 
         {/* Nota informativa */}
         <div className="mt-8 text-center">
