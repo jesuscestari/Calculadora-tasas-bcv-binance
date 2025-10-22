@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  dragonfly:
+    image: docker.dragonflydb.io/dragonflydb/dragonfly
+    container_name: dolar-dehoy-dragonfly
+    ports:
+      - "6379:6379"
+    volumes:
+      - dragonfly-data:/data
+    command: >
+      dragonfly
+      --logtostderr
+      --requirepass=jesuscestari
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "jesuscestari", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  dragonfly-data:
+    driver: local
