@@ -6,7 +6,7 @@ Allow: /
 Disallow: /api/
 
 # Sitemap
-Sitemap: http://o8ssws0g00so8ks0k08swk8o.104.223.65.173.sslip.io/sitemap.xml
+Sitemap: https://dolardehoy.app/sitemap.xml
 
 # Motores de búsqueda específicos
 User-agent: Googlebot

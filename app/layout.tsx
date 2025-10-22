@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "http://o8ssws0g00so8ks0k08swk8o.104.223.65.173.sslip.io";
+const siteUrl = "https://dolardehoy.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

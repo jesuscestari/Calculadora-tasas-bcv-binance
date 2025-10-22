@@ -107,7 +107,7 @@ export default function Home() {
             "@type": "WebApplication",
             "name": "DolarDeHoy",
             "description": "Calculadora en tiempo real de dólares a bolívares con tasas BCV y Binance P2P Venezuela",
-            "url": "http://o8ssws0g00so8ks0k08swk8o.104.223.65.173.sslip.io",
+            "url": "https://dolardehoy.app",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Web",
             "offers": {
