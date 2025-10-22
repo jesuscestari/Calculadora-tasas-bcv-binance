@@ -1,0 +1,22 @@
+# Robots.txt para DolarDeHoy
+# Permitir acceso a todos los motores de búsqueda
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: http://o8ssws0g00so8ks0k08swk8o.104.223.65.173.sslip.io/sitemap.xml
+
+# Motores de búsqueda específicos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Crawl-delay para evitar sobrecarga
+Crawl-delay: 1

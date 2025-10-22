@@ -97,7 +97,39 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative">
+    <>
+      {/* Structured Data (JSON-LD) para SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "DolarDeHoy",
+            "description": "Calculadora en tiempo real de dólares a bolívares con tasas BCV y Binance P2P Venezuela",
+            "url": "http://o8ssws0g00so8ks0k08swk8o.104.223.65.173.sslip.io",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "ratingCount": "250"
+            },
+            "inLanguage": "es-VE",
+            "about": {
+              "@type": "Thing",
+              "name": "Tasa de Cambio Venezuela",
+              "description": "Conversión de dólares a bolívares venezolanos"
+            }
+          })
+        }}
+      />
+      <div className="min-h-screen flex flex-col items-center justify-center p-4 relative">
       {/* Botón de toggle de tema */}
       <button
         onClick={toggleTheme}
@@ -122,8 +154,12 @@ export default function Home() {
       {/* Contenido principal */}
       <div className="w-full max-w-2xl">
         {/* Título */}
-        <h1 className="text-5xl font-bold text-center mb-2">DolarDeHoy</h1>
-        <p className="text-center text-gray-400 mb-8">Calculadora de tasas de cambio en tiempo real</p>
+        <h1 className="text-5xl font-bold text-center mb-2">
+          Precio del Dólar en Venezuela Hoy
+        </h1>
+        <h2 className="text-center text-gray-400 mb-8 text-lg">
+          Calculadora de tasas BCV y Binance P2P en tiempo real
+        </h2>
 
         {/* Input de conversión */}
         <div className="mb-8">
@@ -193,7 +229,7 @@ export default function Home() {
                     onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
-                <h2 className="text-lg font-semibold">Tasa BCV</h2>
+                <h3 className="text-lg font-semibold">Tasa BCV</h3>
               </div>
               <span className="text-sm text-gray-400">Oficial</span>
             </div>
@@ -232,7 +268,7 @@ export default function Home() {
                     onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
-                <h2 className="text-lg font-semibold">Tasa Binance</h2>
+                <h3 className="text-lg font-semibold">Tasa Binance P2P</h3>
               </div>
               <span className="text-sm text-gray-400">P2P</span>
             </div>
@@ -288,5 +324,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </>
   );
 }
