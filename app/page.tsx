@@ -75,13 +75,12 @@ export default function Home() {
     if (isUsdToBs) {
       text = `💵 DolarDeHoy - Conversión de $${formatNumber(amount)} USD:\n\n` +
              `🏦 BCV: ${formatNumber(bcvResult)} Bs\n` +
-             `💰 Binance P2P: ${formatNumber(binanceResult)} Bs\n\n` +
-             `🔗 Calcula tus tasas en: http://o8ssws0g00so8ks0k08swk8o.104.223.65.173.sslip.io`;
+             `💰 Binance P2P: ${formatNumber(binanceResult)} Bs\n\n`
+             
     } else {
       text = `💵 DolarDeHoy - Conversión de ${formatNumber(amount)} Bs:\n\n` +
              `🏦 BCV: $${formatNumber(bcvResult)} USD\n` +
-             `💰 Binance P2P: $${formatNumber(binanceResult)} USD\n\n` +
-             `🔗 Calcula tus tasas en: http://o8ssws0g00so8ks0k08swk8o.104.223.65.173.sslip.io`;
+             `💰 Binance P2P: $${formatNumber(binanceResult)} USD\n\n` 
     }
 
     // Copiar al portapapeles
