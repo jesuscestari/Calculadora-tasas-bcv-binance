@@ -358,6 +358,16 @@ export default function Home() {
             </p>
           )}
         </div>
+
+        {/* Mensaje de amor para Venezuela */}
+        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            <span>Hecho con</span>
+            <span className="text-red-500 text-lg animate-pulse">❤️</span>
+            <span>para Venezuela</span>
+          </div>
+         
+        </div>
       </div>
     </div>
     </>
