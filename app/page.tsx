@@ -154,11 +154,11 @@ export default function Home() {
       {/* Contenido principal */}
       <div className="w-full max-w-2xl">
         {/* Título */}
-        <h1 className="text-5xl font-bold text-center mb-2">
+        <h1 className="text-5xl font-bold text-center mb-2 mt-16 sm:mt-8">
           DolarDeHoy
         </h1>
-        <h2 className="text-center text-gray-400 mb-8 text-lg">
-          Calculadora de tasas BCV y Binance P2P en tiempo real
+        <h2 className="text-center text-gray-400 mb-8 text-lg sm:text-base">
+          Calculadora de tasas BCV y Binance P2P<br />en tiempo real
         </h2>
 
         {/* Input de conversión */}
@@ -316,9 +316,8 @@ export default function Home() {
                 day: '2-digit',
                 hour: '2-digit',
                 minute: '2-digit',
-                second: '2-digit',
                 hour12: true
-              })} <span className="font-semibold">(Hora de Venezuela)</span>
+              })} <span className="font-semibold">(Venezuela)</span>
             </p>
           )}
         </div>
