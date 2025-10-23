@@ -29,17 +29,36 @@ export async function GET() {
       tasaBinance = tasaBCV * 1.03;
     }
 
-    // 3. Guardar en Dragonfly con timestamp
+    // 3. Obtener tasa EUR/VES
+    let tasaEuro = 0;
+
+    try {
+      // Primero obtenemos EUR/USD
+      const euroResponse = await fetch('https://api.exchangerate.host/latest?base=EUR&symbols=USD');
+      const euroData = await euroResponse.json();
+      const eurToUsd = euroData.rates?.USD || 1.08; // Fallback a ~1.08
+
+      // EUR/VES = EUR/USD * USD/VES
+      tasaEuro = eurToUsd * tasaBCV;
+    } catch (error) {
+      console.error('Error fetching Euro rate:', error);
+      // Fallback: asumir EUR/USD ≈ 1.08
+      tasaEuro = 1.08 * tasaBCV;
+    }
+
+    // 4. Guardar en Dragonfly con timestamp
     const timestamp = new Date().toISOString();
 
     await redis.set('tasa:bcv', tasaBCV.toString());
     await redis.set('tasa:binance', tasaBinance.toString());
+    await redis.set('tasa:euro', tasaEuro.toString());
     await redis.set('tasa:updated_at', timestamp);
 
-    // 4. También guardamos como hash para tener todo junto
+    // 5. También guardamos como hash para tener todo junto
     await redis.hset('tasas', {
       bcv: tasaBCV.toString(),
       binance: tasaBinance.toString(),
+      euro: tasaEuro.toString(),
       updated_at: timestamp,
     });
 
@@ -48,6 +67,7 @@ export async function GET() {
       data: {
         bcv: tasaBCV,
         binance: tasaBinance,
+        euro: tasaEuro,
         updated_at: timestamp,
       },
     });

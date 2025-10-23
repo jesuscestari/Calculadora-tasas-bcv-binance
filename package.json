@@ -9,10 +9,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "update-rates": "curl http://localhost:3000/api/update-rates"
   },
   "dependencies": {
     "ioredis": "^5.8.2",
+    "lucide-react": "^0.546.0",
     "next": "16.0.0",
     "react": "19.2.0",
     "react-dom": "19.2.0"

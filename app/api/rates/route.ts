@@ -17,6 +17,7 @@ export async function GET() {
         data: {
           bcv: 0,
           binance: 0,
+          euro: 0,
           updated_at: null,
         },
         cached: false,
@@ -28,6 +29,7 @@ export async function GET() {
       data: {
         bcv: parseFloat(tasas.bcv),
         binance: parseFloat(tasas.binance),
+        euro: parseFloat(tasas.euro || '0'),
         updated_at: tasas.updated_at,
       },
       cached: true,

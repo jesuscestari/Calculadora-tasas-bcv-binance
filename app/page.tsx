@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { Euro } from 'lucide-react';
 
 export default function Home() {
   const [amount, setAmount] = useState<string>('');
   const [isDark, setIsDark] = useState<boolean>(true);
   const [tasaBCV, setTasaBCV] = useState<number>(0);
   const [tasaBinance, setTasaBinance] = useState<number>(0);
+  const [tasaEuro, setTasaEuro] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
   const [isUsdToBs, setIsUsdToBs] = useState<boolean>(true); // true = USD->Bs, false = Bs->USD
@@ -36,6 +38,7 @@ export default function Home() {
       if (data.success) {
         setTasaBCV(data.data.bcv);
         setTasaBinance(data.data.binance);
+        setTasaEuro(data.data.euro);
         setLastUpdated(data.data.updated_at);
       }
     } catch (error) {
@@ -70,17 +73,20 @@ export default function Home() {
   const shareResults = () => {
     const bcvResult = calculateConversion(tasaBCV);
     const binanceResult = calculateConversion(tasaBinance);
+    const euroResult = calculateConversion(tasaEuro);
 
     let text = '';
     if (isUsdToBs) {
       text = `💵 DolarDeHoy - Conversión de $${formatNumber(amount)} USD:\n\n` +
              `🏦 BCV: ${formatNumber(bcvResult)} Bs\n` +
-             `💰 Binance P2P: ${formatNumber(binanceResult)} Bs\n\n`
-             
+             `💰 Binance P2P: ${formatNumber(binanceResult)} Bs\n` +
+             `💶 Euro: ${formatNumber(euroResult)} Bs\n\n`
+
     } else {
       text = `💵 DolarDeHoy - Conversión de ${formatNumber(amount)} Bs:\n\n` +
              `🏦 BCV: $${formatNumber(bcvResult)} USD\n` +
-             `💰 Binance P2P: $${formatNumber(binanceResult)} USD\n\n` 
+             `💰 Binance P2P: $${formatNumber(binanceResult)} USD\n` +
+             `💶 Euro: €${formatNumber(euroResult)}\n\n`
     }
 
     // Copiar al portapapeles
@@ -203,7 +209,7 @@ export default function Home() {
         </div>
 
         {/* Tarjetas de conversión */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Tarjeta BCV */}
           <div
             className="p-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in"
@@ -268,7 +274,7 @@ export default function Home() {
                     onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
-                <h3 className="text-lg font-semibold">Tasa Binance P2P</h3>
+                <h3 className="text-lg font-semibold">Tasa Binance</h3>
               </div>
               <span className="text-sm text-gray-400">P2P</span>
             </div>
@@ -282,6 +288,37 @@ export default function Home() {
                 {loading ? '...' : formatNumber(calculateConversion(tasaBinance))}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
+            </div>
+          </div>
+
+          {/* Tarjeta Euro */}
+          <div
+            className="p-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '1px solid var(--border)',
+              animationDelay: '0.3s',
+            }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <Euro className="w-8 h-8" />
+                </div>
+                <h3 className="text-lg font-semibold">Tasa <br />Euro</h3>
+              </div>
+              <span className="text-sm text-gray-400">EUR</span>
+            </div>
+            <div className="mb-2">
+              <p className="text-sm text-gray-400">
+                {loading ? 'Cargando...' : `Tasa: ${tasaEuro.toFixed(2)} Bs/€`}
+              </p>
+            </div>
+            <div className="flex items-baseline gap-2 transition-all duration-300">
+              <span className="text-3xl font-bold text-blue-500">
+                {loading ? '...' : formatNumber(calculateConversion(tasaEuro))}
+              </span>
+              <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'EUR'}</span>
             </div>
           </div>
         </div>
