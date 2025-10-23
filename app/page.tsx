@@ -155,7 +155,7 @@ export default function Home() {
       <div className="w-full max-w-2xl">
         {/* Título */}
         <h1 className="text-5xl font-bold text-center mb-2">
-          Precio del Dólar en Venezuela Hoy
+          DolarDeHoy
         </h1>
         <h2 className="text-center text-gray-400 mb-8 text-lg">
           Calculadora de tasas BCV y Binance P2P en tiempo real
