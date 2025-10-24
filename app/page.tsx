@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Euro } from 'lucide-react';
+import { Euro, Instagram } from 'lucide-react';
 
 export default function Home() {
   const [amount, setAmount] = useState<string>('');
@@ -372,12 +372,24 @@ export default function Home() {
 
         {/* Mensaje de amor para Venezuela */}
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <span>Hecho con</span>
-            <span className="text-red-500 text-lg animate-pulse">❤️</span>
-            <span>para Venezuela</span>
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <span>Hecho con</span>
+              <span className="text-red-500 text-lg animate-pulse">❤️</span>
+              <span>para Venezuela</span>
+            </div>
+            <a
+              href="https://www.instagram.com/dolardehoy.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-pink-500 dark:hover:text-pink-400 transition-colors"
+              aria-label="Síguenos en Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+              <span className="text-sm">@dolardehoy.app</span>
+            </a>
           </div>
-         
+
         </div>
       </div>
     </div>
