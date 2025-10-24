@@ -10,7 +10,7 @@
 Una aplicación web moderna para calcular conversiones de dólares a bolívares venezolanos usando las tasas oficiales del BCV y las tasas P2P de Binance en tiempo real.
 
 
-
+![image alt](https://github.com/jesuscestari/Calculadora-tasas-bcv-binance/blob/39b3ff30c63397aa4f6b7db95167e66d8c9c315b/public/live.png)
 
 
 ## ✨ Características
