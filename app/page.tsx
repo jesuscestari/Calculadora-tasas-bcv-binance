@@ -160,9 +160,20 @@ export default function Home() {
       {/* Contenido principal */}
       <div className="w-full max-w-2xl">
         {/* Título */}
-        <h1 className="text-5xl font-bold text-center mb-2 mt-16 sm:mt-8">
-          DolarDeHoy
-        </h1>
+        <div className="text-center mb-2 mt-16 sm:mt-8">
+          <h1 className="text-5xl font-bold mb-4">
+            DolarDeHoy
+          </h1>
+          <Image
+            src="/logo.png"
+            alt="DolarDeHoy Logo"
+            width={70}
+            height={70}
+            className="rounded-lg object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-110 mx-auto"
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
+          />
+        </div>
         <h2 className="text-center text-gray-400 mb-8 text-lg sm:text-base">
           Calculadora de tasas BCV y Binance P2P<br />en tiempo real
         </h2>
