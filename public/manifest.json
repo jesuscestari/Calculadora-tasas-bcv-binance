@@ -1,6 +1,7 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "DolarDeHoy - Calculadora de Dólar Venezuela",
+  "short_name": "DolarDeHoy",
+  "description": "Calcula el precio del dólar en Venezuela con tasas BCV y Binance P2P en tiempo real",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +16,11 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "theme_color": "#1a1a1a",
+  "background_color": "#0a0a0a",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "utilities"]
 }

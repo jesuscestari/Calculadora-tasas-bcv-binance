@@ -9,9 +9,10 @@
   <!-- Página principal -->
   <url>
     <loc>https://dolardehoy.app</loc>
-    <lastmod>2025-10-22</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
+    <mobile:mobile/>
   </url>
 
 </urlset>
