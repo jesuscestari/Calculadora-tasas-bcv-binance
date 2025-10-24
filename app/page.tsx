@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { Euro, Instagram } from 'lucide-react';
 
@@ -16,11 +16,12 @@ export default function Home() {
   const [showCopied, setShowCopied] = useState<boolean>(false);
 
   useEffect(() => {
-    // Aplicar el tema al cargar
+    // Aplicar el tema al cargar - optimizado para evitar reflow
+    const html = document.documentElement;
     if (isDark) {
-      document.documentElement.classList.remove('light');
+      html.classList.remove('light');
     } else {
-      document.documentElement.classList.add('light');
+      html.classList.add('light');
     }
   }, [isDark]);
 
@@ -99,8 +100,16 @@ export default function Home() {
   const formatNumber = (value: string): string => {
     if (!value || value === '0.00') return '0.00';
     const num = parseFloat(value);
-    return num.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return num.toLocaleString('es-VE', { 
+      minimumFractionDigits: 2, 
+      maximumFractionDigits: 2 
+    });
   };
+
+  // Memoize calculations to prevent unnecessary re-renders
+  const bcvResult = useMemo(() => calculateConversion(tasaBCV), [amount, tasaBCV, isUsdToBs]);
+  const binanceResult = useMemo(() => calculateConversion(tasaBinance), [amount, tasaBinance, isUsdToBs]);
+  const euroResult = useMemo(() => calculateConversion(tasaEuro), [amount, tasaEuro, isUsdToBs]);
 
   return (
     <>
@@ -169,6 +178,7 @@ export default function Home() {
             alt="DolarDeHoy Logo"
             width={70}
             height={70}
+            priority
             className="rounded-lg object-contain select-none pointer-events-none transition-transform duration-300 hover:scale-110 mx-auto"
             draggable={false}
             onContextMenu={(e) => e.preventDefault()}
@@ -238,6 +248,7 @@ export default function Home() {
                     alt="BCV Logo"
                     width={40}
                     height={40}
+                    loading="eager"
                     className="rounded-lg object-contain select-none pointer-events-none transition-transform duration-300 hover:rotate-12"
                     style={{
                       filter: isDark ? 'brightness(0) invert(1)' : 'brightness(0)',
@@ -257,7 +268,7 @@ export default function Home() {
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
               <span className="text-3xl font-bold text-black dark:text-gray-200">
-                {loading ? '...' : formatNumber(calculateConversion(tasaBCV))}
+                {loading ? '...' : formatNumber(bcvResult)}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
             </div>
@@ -280,6 +291,7 @@ export default function Home() {
                     alt="Binance Logo"
                     width={40}
                     height={40}
+                    loading="eager"
                     className="rounded-lg object-contain select-none pointer-events-none transition-transform duration-300 hover:rotate-12"
                     draggable={false}
                     onContextMenu={(e) => e.preventDefault()}
@@ -296,7 +308,7 @@ export default function Home() {
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
               <span className="text-3xl font-bold text-black dark:text-gray-200">
-                {loading ? '...' : formatNumber(calculateConversion(tasaBinance))}
+                {loading ? '...' : formatNumber(binanceResult)}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
             </div>
@@ -327,7 +339,7 @@ export default function Home() {
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
               <span className="text-3xl font-bold text-black dark:text-gray-200">
-                {loading ? '...' : formatNumber(calculateConversion(tasaEuro))}
+                {loading ? '...' : formatNumber(euroResult)}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'EUR'}</span>
             </div>

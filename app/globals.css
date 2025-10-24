@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Critical CSS inline for above-the-fold content */
+
 html {
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -76,4 +78,39 @@ input[type="number"] {
 .hover\:shadow-lg:hover {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3),
               0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Reduce layout shifts */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Optimize animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Critical above-the-fold styles */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+}
+
+/* Optimize for mobile viewport */
+@supports (height: 100dvh) {
+  .min-h-screen {
+    min-height: 100dvh;
+  }
 }
