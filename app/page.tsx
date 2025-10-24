@@ -256,7 +256,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-gray-700 dark:text-gray-200">
+              <span className="text-3xl font-bold text-black dark:text-gray-200">
                 {loading ? '...' : formatNumber(calculateConversion(tasaBCV))}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
@@ -295,7 +295,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-gray-700 dark:text-gray-200">
+              <span className="text-3xl font-bold text-black dark:text-gray-200">
                 {loading ? '...' : formatNumber(calculateConversion(tasaBinance))}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
@@ -326,7 +326,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-gray-700 dark:text-gray-200">
+              <span className="text-3xl font-bold text-black dark:text-gray-200">
                 {loading ? '...' : formatNumber(calculateConversion(tasaEuro))}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'EUR'}</span>
