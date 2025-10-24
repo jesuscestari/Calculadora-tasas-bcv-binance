@@ -251,12 +251,12 @@ export default function Home() {
               <span className="text-sm text-gray-400">Oficial</span>
             </div>
             <div className="mb-2">
-              <p className="text-sm text-gray-400">
+              <p className="text-lg font-semibold text-green-600 dark:text-green-400">
                 {loading ? 'Cargando...' : `Tasa: ${tasaBCV.toFixed(2)} Bs/$`}
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-green-500">
+              <span className="text-3xl font-bold text-gray-700 dark:text-gray-200">
                 {loading ? '...' : formatNumber(calculateConversion(tasaBCV))}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
@@ -290,12 +290,12 @@ export default function Home() {
               <span className="text-sm text-gray-400">P2P</span>
             </div>
             <div className="mb-2">
-              <p className="text-sm text-gray-400">
+              <p className="text-lg font-semibold text-yellow-600 dark:text-yellow-400">
                 {loading ? 'Cargando...' : `Tasa: ${tasaBinance.toFixed(2)} Bs/$`}
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-yellow-500">
+              <span className="text-3xl font-bold text-gray-700 dark:text-gray-200">
                 {loading ? '...' : formatNumber(calculateConversion(tasaBinance))}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
@@ -321,12 +321,12 @@ export default function Home() {
               <span className="text-sm text-gray-400">EUR</span>
             </div>
             <div className="mb-2">
-              <p className="text-sm text-gray-400">
+              <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
                 {loading ? 'Cargando...' : `Tasa: ${tasaEuro.toFixed(2)} Bs/€`}
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-blue-500">
+              <span className="text-3xl font-bold text-gray-700 dark:text-gray-200">
                 {loading ? '...' : formatNumber(calculateConversion(tasaEuro))}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'EUR'}</span>
@@ -356,8 +356,9 @@ export default function Home() {
         {/* Nota informativa */}
         <div className="mt-8 text-center">
           {lastUpdated && (
-            <p className="text-sm text-gray-500">
-              Última actualización: {new Date(lastUpdated).toLocaleString('es-VE', {
+            <p className="text-lg font-semibold text-gray-600 dark:text-gray-300">
+              Última actualización: <br className="sm:hidden" />
+              {new Date(lastUpdated).toLocaleString('es-VE', {
                 timeZone: 'America/Caracas',
                 year: 'numeric',
                 month: '2-digit',
@@ -365,7 +366,7 @@ export default function Home() {
                 hour: '2-digit',
                 minute: '2-digit',
                 hour12: true
-              })} <span className="font-semibold">(Venezuela)</span>
+              })} <span className="font-bold ">(Venezuela)</span>
             </p>
           )}
         </div>
