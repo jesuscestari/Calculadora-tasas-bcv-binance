@@ -82,6 +82,7 @@ export async function GET() {
 
     return NextResponse.json({
       success: true,
+      message: 'Registros anteriores eliminados y nuevas tasas guardadas exitosamente',
       data: {
         bcv: tasaBCV,
         binance: tasaBinance,
