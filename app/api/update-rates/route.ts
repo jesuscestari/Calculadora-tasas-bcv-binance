@@ -46,7 +46,18 @@ export async function GET() {
       tasaEuro = 1.08 * tasaBCV;
     }
 
-    // 4. Guardar en Dragonfly con timestamp
+    // 4. Limpiar todos los registros anteriores
+    console.log('[CRON] Eliminando registros anteriores de Redis...');
+
+    // Eliminar keys individuales
+    await redis.del('tasa:bcv', 'tasa:binance', 'tasa:euro', 'tasa:updated_at');
+
+    // Eliminar el hash de tasas
+    await redis.del('tasas');
+
+    console.log('[CRON] Registros anteriores eliminados exitosamente');
+
+    // 5. Guardar en Dragonfly con timestamp (solo el más reciente)
     const timestamp = new Date().toISOString();
 
     await redis.set('tasa:bcv', tasaBCV.toString());
@@ -54,12 +65,19 @@ export async function GET() {
     await redis.set('tasa:euro', tasaEuro.toString());
     await redis.set('tasa:updated_at', timestamp);
 
-    // 5. También guardamos como hash para tener todo junto
+    // 6. También guardamos como hash para tener todo junto
     await redis.hset('tasas', {
       bcv: tasaBCV.toString(),
       binance: tasaBinance.toString(),
       euro: tasaEuro.toString(),
       updated_at: timestamp,
+    });
+
+    console.log('[CRON] Nuevas tasas guardadas exitosamente:', {
+      bcv: tasaBCV,
+      binance: tasaBinance,
+      euro: tasaEuro,
+      timestamp,
     });
 
     return NextResponse.json({
