@@ -99,9 +99,12 @@ export const metadata: Metadata = {
     },
   },
 
-  // Otros
+  // Canonical and alternates to prevent duplicate content
   alternates: {
-    canonical: siteUrl,
+    canonical: "https://dolardehoy.app",
+    languages: {
+      'es-VE': "https://dolardehoy.app",
+    },
   },
   category: "finance",
 };

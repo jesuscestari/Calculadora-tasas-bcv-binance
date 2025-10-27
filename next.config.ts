@@ -25,7 +25,26 @@ const nextConfig: NextConfig = {
     // Turbopack handles optimization automatically
   },
   
-  // Headers for caching
+  // Redirects for SEO - ensure all traffic goes to https://dolardehoy.app (non-www)
+  // This fixes the "Page with redirect" issue in Google Search Console
+  async redirects() {
+    return [
+      // Redirect www to non-www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.dolardehoy.app',
+          },
+        ],
+        destination: 'https://dolardehoy.app/:path*',
+        permanent: true,
+      },
+    ];
+  },
+  
+  // Headers for caching and security
   async headers() {
     return [
       {
@@ -38,6 +57,18 @@ const nextConfig: NextConfig = {
           {
             key: 'X-Frame-Options',
             value: 'DENY'
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload'
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
           }
         ],
       },
