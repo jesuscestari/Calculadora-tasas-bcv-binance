@@ -267,7 +267,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-black dark:text-gray-200">
+              <span className="text-3xl font-bold" style={{ color: 'var(--foreground)' }}>
                 {loading ? '...' : formatNumber(bcvResult)}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
@@ -307,7 +307,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-black dark:text-gray-200">
+              <span className="text-3xl font-bold" style={{ color: 'var(--foreground)' }}>
                 {loading ? '...' : formatNumber(binanceResult)}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'USD'}</span>
@@ -338,7 +338,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex items-baseline gap-2 transition-all duration-300">
-              <span className="text-3xl font-bold text-black dark:text-gray-200">
+              <span className="text-3xl font-bold" style={{ color: 'var(--foreground)' }}>
                 {loading ? '...' : formatNumber(euroResult)}
               </span>
               <span className="text-lg text-gray-400">{isUsdToBs ? 'Bs' : 'EUR'}</span>
